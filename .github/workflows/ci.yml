@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile scripts
+        run: python -m py_compile skills/prodcraft/scripts/inventory.py evals/grade_report.py
+      - name: Inventory runs on the demo and finds the planted secrets
+        run: |
+          python skills/prodcraft/scripts/inventory.py examples/order-service --json > inventory.json
+          python -c "import json; d=json.load(open('inventory.json')); assert len(d['secret_candidates']) >= 2, d; assert not d['has_lockfile']"
+      - name: Sample report passes the eval
+        run: python evals/grade_report.py examples/order-service/PRODCRAFT_REPORT.md --min-recall 0.9

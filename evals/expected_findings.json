@@ -1,0 +1,24 @@
+{
+  "target": "examples/order-service",
+  "description": "Ground truth for the planted issues in the demo service. A good prodcraft report must catch each one, with evidence in the named file and a matching concept.",
+  "findings": [
+    {"id": "hardcoded-secret", "lens": "security", "min_severity": "Critical", "file": "app/db.py", "keywords": ["hard-coded", "hardcoded", "credential", "secret", "password"]},
+    {"id": "committed-env", "lens": "security", "min_severity": "High", "file": ".env", "keywords": [".env", "committed", "secret", "api key"]},
+    {"id": "sql-injection", "lens": "security", "min_severity": "Critical", "file": "app/db.py", "keywords": ["injection", "parameter"]},
+    {"id": "idor", "lens": "security", "min_severity": "High", "file": "app/main.py", "keywords": ["idor", "ownership", "owner", "access control", "authoriz"]},
+    {"id": "non-idempotent-retry", "lens": "data", "min_severity": "High", "file": "app/payments.py", "keywords": ["idempoten", "double charge", "double-charge", "duplicate charge"]},
+    {"id": "swallowed-payment-error", "lens": "code", "min_severity": "Critical", "file": "app/payments.py", "keywords": ["swallow", "always returns true", "returns true", "marked paid", "marks the order paid"]},
+    {"id": "no-timeout", "lens": "deployment", "min_severity": "Medium", "file": "app/payments.py", "keywords": ["timeout"]},
+    {"id": "stock-race", "lens": "data", "min_severity": "High", "file": "app/inventory.py", "keywords": ["race", "read-modify-write", "lost update", "oversell", "atomic"]},
+    {"id": "dual-write", "lens": "data", "min_severity": "High", "file": "app/main.py", "keywords": ["dual write", "dual-write", "outbox"]},
+    {"id": "unbounded-queue", "lens": "data", "min_severity": "Medium", "file": "app/events.py", "keywords": ["unbounded", "backpressure", "lost on restart", "in-memory"]},
+    {"id": "fake-readiness", "lens": "deployment", "min_severity": "Medium", "file": "app/main.py", "keywords": ["readiness", "health"]},
+    {"id": "shared-database", "lens": "architecture", "min_severity": "High", "file": "billing_worker/worker.py", "keywords": ["shared database", "shared-database", "data ownership", "owner", "quantum", "distributed monolith"]},
+    {"id": "connascence-of-meaning", "lens": "architecture", "min_severity": "Medium", "file": "billing_worker/worker.py", "keywords": ["connascence", "magic", "INVOICED_V2", "contract"]},
+    {"id": "container-hardening", "lens": "deployment", "min_severity": "Medium", "file": "Dockerfile", "keywords": ["root", "latest", "pin"]},
+    {"id": "unpinned-deps", "lens": "deployment", "min_severity": "Medium", "file": "requirements.txt", "keywords": ["lockfile", "unpinned", "pin"]},
+    {"id": "no-tests-no-ci", "lens": "deployment", "min_severity": "Medium", "file": null, "keywords": ["no tests", "no test", "no ci", "missing tests", "no automated", "ci pipeline"]}
+  ],
+  "required_sections": ["Verdict", "Context and assumptions", "Findings summary", "Proposed ADRs", "Fitness functions"],
+  "expected_verdict": "Not ready"
+}
