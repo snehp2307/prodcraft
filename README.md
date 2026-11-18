@@ -1,5 +1,11 @@
 # prodcraft
 
+[![ci](https://github.com/snehp2307/prodcraft/actions/workflows/ci.yml/badge.svg)](https://github.com/snehp2307/prodcraft/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Planted bugs caught](https://img.shields.io/badge/demo%20eval-16%2F16%20planted%20bugs-brightgreen)](evals/)
+[![Claude Skill](https://img.shields.io/badge/Claude-Skill-d97757)](skills/prodcraft/SKILL.md)
+[![Release](https://img.shields.io/github/v/release/snehp2307/prodcraft?include_prereleases)](https://github.com/snehp2307/prodcraft/releases)
+
 **A Claude skill that reviews code the way a staff engineer does: clean code, security, deployment readiness, and system design — tied together.**
 
 Most AI code reviews stop at *"this line is bad."* prodcraft keeps going:
